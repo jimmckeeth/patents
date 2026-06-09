@@ -56,13 +56,12 @@ This script will query BigQuery, update `data/forward_citations.csv` and `data/c
 
 * **Portfolio Size**: 62 patents across **12 distinct invention families**
 * **Citation Rate**: **100% of families** have forward citations
-* **Total Citations**: 1,030 citation links from **821 unique citing patents**
-* **Top Citing Companies**: Micron Technology, IBM, Apple, Google, Microsoft, VirnetX
+* **Total Citations**: 1,032 citation links from **823 unique citing patents**
+* **Top Citing Companies**: Micron Technology, Google, IBM, Apple, VirnetX, Microsoft
 * **Top Cited Areas**: Access Control / Device Security (374 citations) and Search Engine Database Optimization (244 citations)
 
 ---
 
 ## 🔗 Documentation Links
-* **Detailed Setup**: [AGENTS.md](file:///C:/Users/jim/documents/Git/patents/AGENTS.md)
 * **Data Review & Anomalies**: [ANALYSIS.md](file:///C:/Users/jim/documents/Git/patents/ANALYSIS.md)
 * **Executive Performance Summary**: [SUMMARY.md](file:///C:/Users/jim/documents/Git/patents/SUMMARY.md)

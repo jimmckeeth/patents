@@ -14,8 +14,8 @@ Here is a summary of the structure and dimensions of the three CSV files:
 | File Name | Row Count | Unique Entities | Columns | Key Purpose |
 | :--- | :--- | :--- | :--- | :--- |
 | **[my-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/my-patents.csv)** | 62 | 62 patents, 12 families | `Document ID`, `Date Published`, `Family ID`, `Pages`, `Title`, `CPCI` | Records the primary patents authored by James (Jim) McKeeth. |
-| **[citing-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/citing-patents.csv)** | 821 | 821 citing patents | `citing_patent`, `citing_title`, `citing_assignee`, `citing_url` | Summarizes unique patents that cite James McKeeth's work. |
-| **[forward_citations.csv](file:///C:/Users/jim/documents/Git/patents/data/forward_citations.csv)** | 1030 | 821 citing, 52 cited | `citing_patent`, `citing_family_id`, `citing_title`, `citing_assignee`, `citing_url`, `cited_patent`, `cited_family_id`, `cited_title`, `cited_assignee`, `cited_url`, `category_code`, `category_name` | Maps individual citation relationships between citing and cited patents, including the source categories. |
+| **[citing-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/citing-patents.csv)** | 823 | 823 citing patents | `citing_patent`, `citing_title`, `citing_assignee`, `citing_url` | Summarizes unique patents that cite James McKeeth's work. |
+| **[forward_citations.csv](file:///C:/Users/jim/documents/Git/patents/data/forward_citations.csv)** | 1032 | 823 citing, 52 cited | `citing_patent`, `citing_family_id`, `citing_title`, `citing_assignee`, `citing_url`, `cited_patent`, `cited_family_id`, `cited_title`, `cited_assignee`, `cited_url`, `category_code`, `category_name` | Maps individual citation relationships between citing and cited patents, including the source categories. |
 
 ---
 
@@ -53,15 +53,15 @@ graph TD
     PF -->|Family 25546405: Search Engine| C2["244 Citations"]
     PF -->|Other 10 Families| C3["412 Citations"]
     
-    C1 & C2 & C3 -->|Top Citing Companies| TA["Micron Technology (101 citations)"]
-    C1 & C2 & C3 -->|Top Citing Companies| TB["IBM (38 citations)"]
-    C1 & C2 & C3 -->|Top Citing Companies| TC["Apple Inc. (36 citations)"]
-    C1 & C2 & C3 -->|Top Citing Companies| TD["Google (32 citations)"]
-    C1 & C2 & C3 -->|Top Citing Companies| TE["Microsoft (30 citations)"]
-    C1 & C2 & C3 -->|Top Citing Companies| TF["VirnetX (25 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TA["Micron Technology (112 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TB["IBM (56 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TC["Apple Inc. (50 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TD["Google (74 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TE["Microsoft (41 citations)"]
+    C1 & C2 & C3 -->|Top Citing Companies| TF["VirnetX (43 citations)"]
 ```
 
 ### Citation Counts vs. Unique Patents
 There is an interesting distinction between the number of **individual citation links** in `forward_citations.csv` and the number of **unique citing patents** in `citing-patents.csv`:
-* **Micron Technology Inc.**: Has **101 citation links** across 13 unique citing patents. This indicates that Micron's citing patents heavily cite multiple patents within Jim's portfolio (average of ~7.7 citations per patent), which is common for continuation applications or related portfolio developments.
-* **IBM / Apple / Google / Microsoft**: Cite Jim's patents across a broad variety of individual patents (e.g., Apple has 36 citations across 34 unique citing patents), representing wide external adoption and reference in their own distinct technologies.
+* **Micron Technology Inc.**: Has **112 citation links** across 15 unique citing patents. This indicates that Micron's citing patents heavily cite multiple patents within Jim's portfolio (average of ~7.5 citations per patent), which is common for continuation applications or related portfolio developments.
+* **IBM / Apple / Google / Microsoft / VirnetX**: Cite Jim's patents across a broad variety of individual patents (e.g., Apple has 50 citations across 46 unique citing patents), representing wide external adoption and reference in their own distinct technologies.

@@ -7,10 +7,10 @@ This document summarizes key statistics and notable insights from the patent por
 ## 📈 Executive Summary
 
 * **Total Patents in Portfolio**: 62 (representing 12 distinct patent families)
-* **Total Forward Citations**: 1,030 citation pairs
-* **Unique Citing Patents**: 821 external/internal patents referencing the portfolio
+* **Total Forward Citations**: 1,032 citation pairs
+* **Unique Citing Patents**: 823 external/internal patents referencing the portfolio
 * **Family Citation Rate**: **100%** (every one of the 12 patent families is cited at least once)
-* **Average Citations per Family**: ~85.8 citations
+* **Average Citations per Family**: 86.0 citations
 
 ---
 
@@ -38,16 +38,18 @@ The institutions citing Jim McKeeth's patents read like a "Who's Who" of major t
 
 | Citing Organization | Citations Count | Unique Citing Patents | Key Technology Areas |
 | :--- | :---: | :---: | :--- |
-| **Micron Technology Inc.** | 101 | 13 | Access Control, Memory Systems, Book Animation |
-| **IBM** | 38 | 35 | Resource Allocation, Search Databases, Process Design |
-| **Apple Inc.** | 36 | 34 | User Interfaces, Document Previewing, Mobile Security |
-| **Google Inc.** | 32 | 31 | Search Engines, Page Ranking, Semantic Selection |
-| **Microsoft Corp.** | 30 | 28 | Hypermedia Management, Multimodal Authentication |
-| **VirnetX Inc.** | 25 | 25 | Secure Domain Names, Agile Network Protocols |
+| **Micron Technology Inc.** | 112 | 15 | Access Control, Memory Systems, Book Animation |
+| **Google Inc.** | 74 | 70 | Search Engines, Page Ranking, Semantic Selection |
+| **IBM** | 56 | 51 | Resource Allocation, Search Databases, Process Design |
+| **Apple Inc.** | 50 | 46 | User Interfaces, Document Previewing, Mobile Security |
+| **VirnetX Inc.** | 43 | 43 | Secure Domain Names, Agile Network Protocols |
+| **Microsoft Corp.** | 41 | 39 | Hypermedia Management, Multimodal Authentication |
 
 > [!NOTE]
-> **Micron Technology** has a high concentration of citations (101) across 13 unique patents, reflecting deep internal citations and continuation work within their own product lines. 
-> Conversely, **IBM, Apple, Google, and Microsoft** show broad reference adoption, citing the portfolio across dozens of separate, independent patent filings.
+> *Citation counts represent all forward citations where the company is listed as an assignee (including co-assigned patents split by comma).*
+>
+> **Micron Technology** has a high concentration of citations (112) across 15 unique patents, reflecting deep internal citations and continuation work within their own product lines. 
+> Conversely, **Google, IBM, Apple, and Microsoft** show broad reference adoption, citing the portfolio across dozens of separate, independent patent filings.
 
 ---
 

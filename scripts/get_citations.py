@@ -86,6 +86,9 @@ try:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(os.path.dirname(script_dir), "data")
     
+    # Sort values to ensure a deterministic, stable output order in Git
+    df.sort_values(by=['citing_patent', 'cited_patent'], inplace=True, ignore_index=True)
+    
     # Save the primary forward citations file
     filename = os.path.join(data_dir, "forward_citations.csv")
     df.to_csv(filename, index=False)
@@ -96,6 +99,8 @@ try:
     citing_df = df[['citing_patent', 'citing_title', 'citing_assignee', 'citing_url']].drop_duplicates(subset=['citing_patent'])
     # Remove any corrupt or empty entries if they somehow slipped in
     citing_df = citing_df[citing_df['citing_patent'].astype(str) != '0'].dropna(subset=['citing_patent'])
+    # Sort to ensure stable output order in Git
+    citing_df.sort_values(by=['citing_patent'], inplace=True, ignore_index=True)
     citing_df.to_csv(citing_filename, index=False)
     print(f"Success! Generated and synced {len(citing_df)} unique citing patents to {citing_filename}")
 
