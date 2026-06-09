@@ -82,15 +82,57 @@ try:
     # De-duplicate to ensure a clean 1:1 list of citations
     df.drop_duplicates(subset=['citing_patent', 'cited_patent'], inplace=True)
     
-    filename = "forward_citations.csv"
+    # Reorganized paths relative to this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(os.path.dirname(script_dir), "data")
+    
+    # Save the primary forward citations file
+    filename = os.path.join(data_dir, "forward_citations.csv")
     df.to_csv(filename, index=False)
     print(f"Success! Saved {len(df)} unique citations to {filename}")
+
+    # Automatically generate/update citing-patents.csv to keep it in sync
+    citing_filename = os.path.join(data_dir, "citing-patents.csv")
+    citing_df = df[['citing_patent', 'citing_title', 'citing_assignee', 'citing_url']].drop_duplicates(subset=['citing_patent'])
+    # Remove any corrupt or empty entries if they somehow slipped in
+    citing_df = citing_df[citing_df['citing_patent'].astype(str) != '0'].dropna(subset=['citing_patent'])
+    citing_df.to_csv(citing_filename, index=False)
+    print(f"Success! Generated and synced {len(citing_df)} unique citing patents to {citing_filename}")
+
+    # Compare with local my-patents.csv if it exists
+    my_patents_file = os.path.join(data_dir, "my-patents.csv")
+    if os.path.exists(my_patents_file):
+        print("\n--- Local Portfolio & Citation Statistics ---")
+        try:
+            my_df = pd.read_csv(my_patents_file)
+            # Normalize Document ID formatting (spaces -> hyphens)
+            my_df['Document ID'] = my_df['Document ID'].astype(str).str.replace(' ', '-')
+            
+            # Find cited patents
+            cited_in_dataset = df['cited_patent'].unique()
+            my_patents_cited = my_df[my_df['Document ID'].isin(cited_in_dataset)]
+            
+            total_my_patents = len(my_df)
+            total_cited_patents = len(my_patents_cited)
+            
+            print(f"Total patents in portfolio: {total_my_patents}")
+            print(f"Patents with direct forward citations: {total_cited_patents} ({total_cited_patents/total_my_patents:.1%})")
+            
+            # Family level stats
+            total_families = my_df['Family ID'].nunique()
+            # A family is cited if any of its members are cited, or family ID matches
+            cited_families = my_df[my_df['Document ID'].isin(cited_in_dataset)]['Family ID'].nunique()
+            print(f"Total patent families represented: {total_families}")
+            print(f"Families with forward citations: {cited_families} ({cited_families/total_families:.1%})")
+            
+        except Exception as e_stats:
+            print(f"Could not calculate portfolio statistics: {e_stats}")
 
 except Exception as e:
     print(f"An error occurred during execution: {e}")
     
 print("\n--- Top Citing Companies ---")
-if 'citing_assignee' in df.columns:
+if 'df' in locals() and 'citing_assignee' in df.columns:
     # Split comma-separated companies into separate rows, drop blanks, and count
     assignees = df['citing_assignee'].dropna().str.split(', ').explode()
     top_assignees = assignees.value_counts().head(10)
