@@ -18,7 +18,12 @@ If you want to use this to analyize patents by other inventors you are free to d
 
 * [**Summary**](SUMMARY.md) of key statistics and notable insights.
 * A convenient browsable **[portal](portal.html)** interface with links to patents.
-* Comprehensive **[Data Review and Analysis.](ANALYSIS.md)**
+* Comprehensive **[Data Review and Analysis](ANALYSIS.md)**.
+* Patent list data:
+  * **[My Patents Portfolio](data/my_patents.md)** [[CSV](data/my_patents.csv)]
+  * **[Citing Patents](data/citing_patents.md)** [[CSV](data/citing_patents.csv)]
+  * **[Forward Citations Mapping](data/forward_citations.md)** [[CSV](data/forward_citations.csv)]
+
 
 ---
 
@@ -29,13 +34,17 @@ The project is structured into dedicated folders for scripts and data files:
 ```text
 ├── data/
 │   ├── citing-patents.csv       # Unique citing patents (deduplicated)
+│   ├── citing_patents.md        # Citing patents list in Markdown format
 │   ├── forward_citations.csv    # Citation pairs with category mappings
+│   ├── forward_citations.md     # Citations list in Markdown format
 │   ├── forward_citations.ods    # OpenDocument spreadsheet version of citations
-│   └── my-patents.csv           # James McKeeth's primary patent portfolio
+│   ├── my-patents.csv           # James McKeeth's primary patent portfolio
+│   └── my_patents.md            # Patent portfolio list in Markdown format
 ├── scripts/
 │   ├── get_citations.py         # Main execution script (BigQuery client & processor)
 │   ├── download_pdfs.py         # Helper script to download patent PDFs to my-patents/ or citing-patents/
 │   ├── generate_portal.py       # Helper script to compile static HTML portal dashboard
+│   ├── generate_markdown_lists.py # Helper script to convert CSV data to Markdown lists
 │   ├── prereq                   # Minimal pip installation instructions
 │   └── requirements.txt         # Full Python dependencies dump
 ├── README.md                    # Core project index & quick start (this file)

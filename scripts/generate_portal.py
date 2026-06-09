@@ -965,8 +965,7 @@ def main():
             </div>
 
             <div style="display: flex; gap: 12px; margin: 8px 0 16px;">
-                <a id="drawerBtnPdf" href="#" class="btn btn-primary" target="_blank"><i class="fa-solid fa-file-pdf"></i> Open Local PDF</a>
-                <a id="drawerBtnWeb" href="#" class="btn btn-outline" target="_blank"><i class="fa-solid fa-globe"></i> Google Patents</a>
+                <a id="drawerBtnWeb" href="#" class="btn btn-primary" style="flex-grow: 1; justify-content: center;" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> View on Google Patents</a>
             </div>
 
             <div>
@@ -1381,14 +1380,7 @@ def main():
             document.getElementById('drawerPages').textContent = pat.Pages || '-';
             document.getElementById('drawerCPC').textContent = pat.CPCI || 'None';
             
-            // Setup Links
-            // 1. PDF Link: files reside in patents/my-patents/ (normalized ID).pdf relative to HTML root
-            const pdfName = pat['Document ID'].replace(/[- ]/g, '') + '.pdf';
-            const pdfUrl = 'my-patents/' + pdfName;
-            const pdfBtn = document.getElementById('drawerBtnPdf');
-            pdfBtn.href = pdfUrl;
-            
-            // 2. Google Patents Link
+            // Setup Google Patents Link
             const webBtn = document.getElementById('drawerBtnWeb');
             const googlePatId = pat['Document ID'].replace(/[- ]/g, '');
             webBtn.href = `https://patents.google.com/patent/${{googlePatId}}/en`;
