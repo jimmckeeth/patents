@@ -50,6 +50,9 @@ The script will:
 
 ## Key Files
 - `scripts/get_citations.py`: The primary execution script containing the BigQuery SQL logic.
+- `scripts/download_pdfs.py`: Helper script to scrape and download patent PDFs to the `my-patents/` or `citing-patents/` folders.
+- `scripts/generate_portal.py`: Helper script to compile static HTML portal dashboard.
+- `portal.html`: The generated self-contained interactive dashboard portal.
 - `data/forward_citations.csv`: The primary output containing all found forward citations.
 - `data/my-patents.csv`: A local dataset containing metadata for James McKeeth's patents.
 - `data/citing-patents.csv`: A dataset of patents known to cite the author's work.

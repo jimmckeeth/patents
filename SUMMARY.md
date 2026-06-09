@@ -57,21 +57,21 @@ The institutions citing Jim McKeeth's patents read like a "Who's Who" of major t
 
 The following individual patents from the portfolio have received the highest number of direct forward citations:
 
-1. **`US-6763362-B2` (238 Citations)**
+1. **`US-6763362-B2` (122 Citations)**
    * *Title*: Method and system for updating a search engine
    * *Domain*: Search Database Optimization
-2. **`US-7877612-B2` (217 Citations)**
-   * *Title*: System and method for controlling user access to an electronic device
-   * *Domain*: Device Security & Access Control
-3. **`US-6766456-B1` (130 Citations)**
+2. **`US-6766456-B1` (109 Citations)**
    * *Title*: Method and system for authenticating a user of a computer system
    * *Domain*: Biometrics & Authentication
-4. **`US-6727920-B1` (98 Citations)**
-   * *Title*: Multiple operating system quick boot utility
-   * *Domain*: OS Boot / Bootloader Management
-5. **`US-7188175-B1` (83 Citations)**
+3. **`US-7188175-B1` (71 Citations)**
    * *Title*: Method and system for communicating between clients in a computer network
    * *Domain*: P2P / Client-to-Client Networking
+4. **`US-6727920-B1` (70 Citations)**
+   * *Title*: Multiple operating system quick boot utility
+   * *Domain*: OS Boot / Bootloader Management
+5. **`US-2003105744-A1` (68 Citations)**
+   * *Title*: Method and system for updating a search engine
+   * *Domain*: Search Database Optimization
 
 ---
 

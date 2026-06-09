@@ -16,9 +16,12 @@ The project is structured into dedicated folders for scripts and data files:
 │   └── my-patents.csv           # James McKeeth's primary patent portfolio
 ├── scripts/
 │   ├── get_citations.py         # Main execution script (BigQuery client & processor)
+│   ├── download_pdfs.py         # Helper script to download patent PDFs to my-patents/ or citing-patents/
+│   ├── generate_portal.py       # Helper script to compile static HTML portal dashboard
 │   ├── prereq                   # Minimal pip installation instructions
 │   └── requirements.txt         # Full Python dependencies dump
 ├── README.md                    # Core project index & quick start (this file)
+├── portal.html                  # Interactive, self-contained HTML dashboard portal
 ├── AGENTS.md                    # Detailed developer configurations & setup
 ├── ANALYSIS.md                  # Comprehensive CSV data review & integrity report
 └── SUMMARY.md                   # Executive portfolio citation statistics
@@ -43,12 +46,30 @@ Set your Google Application Credentials environment variable:
 * **Linux/macOS (Fish)**: `set -x GOOGLE_APPLICATION_CREDENTIALS "/path/to/key.json"`
 * **Windows (PowerShell)**: `$env:GOOGLE_APPLICATION_CREDENTIALS="C:\path\to\key.json"`
 
-### 4. Run the Script
+### 4. Run the Citation Query
 From the repository root, run:
 ```bash
 python scripts/get_citations.py
 ```
 This script will query BigQuery, update `data/forward_citations.csv` and `data/citing-patents.csv`, and output a citation matching summary directly to your terminal.
+
+### 5. Download Patent PDFs (Optional)
+To download the full PDFs of your portfolio patents into the `my-patents/` directory:
+```bash
+python scripts/download_pdfs.py
+```
+*Note: To download PDFs for citing patents (warning: ~1GB of data across 800+ files) into `citing-patents/`, you can run: `python scripts/download_pdfs.py --citing`.*
+
+### 6. Generate the Portal Dashboard (Optional)
+To generate or refresh the interactive, search/sort/filter HTML dashboard:
+```bash
+python scripts/generate_portal.py
+```
+This will compile all your patent and citation datasets into a single self-contained file **`portal.html`** in the root of the project. Simply double-click **`portal.html`** to open the dashboard in your web browser. It features:
+* Interactive overview cards.
+* Filterable portfolio list with links to open the downloaded PDFs in `my-patents/`.
+* Searchable and filterable citation relationships and company-specific breakdowns.
+
 
 ---
 

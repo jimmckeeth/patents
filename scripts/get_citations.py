@@ -1,6 +1,40 @@
 import os
+import re
 import pandas as pd
 from google.cloud import bigquery
+
+def normalize_patent_id(pat_id):
+    if not isinstance(pat_id, str):
+        return pat_id
+    # Strip spaces, hyphens, commas
+    clean = re.sub(r'[^A-Z0-9]', '', pat_id.upper())
+    
+    # 1. Match US application publications: US + YYYY (19xx or 20xx) + sequence digits + kind code
+    match_app = re.match(r'^US(19\d{2}|20\d{2})([0-9]+)([A-Z][0-9]*)$', clean)
+    if match_app:
+        year = match_app.group(1)
+        seq = match_app.group(2)
+        kind = match_app.group(3)
+        # Pad sequence number to 7 digits
+        padded_seq = seq.zfill(7)
+        return f"US-{year}-{padded_seq}-{kind}"
+        
+    # 2. Match standard US utility patents: US + sequence digits + kind code
+    match_pat = re.match(r'^US([0-9]+)([A-Z][0-9]*)$', clean)
+    if match_pat:
+        seq = match_pat.group(1)
+        kind = match_pat.group(2)
+        return f"US-{seq}-{kind}"
+        
+    # 3. Match foreign patents (e.g. AU, CN, EP)
+    match_foreign = re.match(r'^([A-Z]{2})([0-9]+)([A-Z][0-9]*)$', clean)
+    if match_foreign:
+        cc = match_foreign.group(1)
+        seq = match_foreign.group(2)
+        kind = match_foreign.group(3)
+        return f"{cc}-{seq}-{kind}"
+        
+    return pat_id
 
 # Verify the environment variable is set
 if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
@@ -66,6 +100,10 @@ try:
     query_job = client.query(query)
     df = query_job.to_dataframe()
     
+    # Normalize patent IDs in the dataframe
+    df['citing_patent'] = df['citing_patent'].apply(normalize_patent_id)
+    df['cited_patent'] = df['cited_patent'].apply(normalize_patent_id)
+    
     # Map the BigQuery category codes to readable formats
     category_map = {
         'PRS': 'Patent Register Service',
@@ -110,8 +148,8 @@ try:
         print("\n--- Local Portfolio & Citation Statistics ---")
         try:
             my_df = pd.read_csv(my_patents_file)
-            # Normalize Document ID formatting (spaces -> hyphens)
-            my_df['Document ID'] = my_df['Document ID'].astype(str).str.replace(' ', '-')
+            # Normalize Document ID formatting using standard helper
+            my_df['Document ID'] = my_df['Document ID'].apply(normalize_patent_id)
             
             # Find cited patents
             cited_in_dataset = df['cited_patent'].unique()
@@ -147,3 +185,36 @@ if 'df' in locals() and 'citing_assignee' in df.columns:
             print(f"{count} citations: {company}")
     else:
         print("No corporate assignee data found in the citing patents.")    
+
+print("\n--- Additional Citation Insights ---")
+if 'df' in locals() and not df.empty:
+    # 1. Self-Citation vs External Citation
+    my_patents_file = os.path.join(data_dir, "my-patents.csv") if 'data_dir' in locals() else "data/my-patents.csv"
+    if os.path.exists(my_patents_file):
+        try:
+            my_df = pd.read_csv(my_patents_file)
+            portfolio_ids = set(my_df['Document ID'].astype(str).str.replace(' ', '-').unique())
+            
+            df['is_self_citation'] = df['citing_patent'].isin(portfolio_ids)
+            self_cites = df[df['is_self_citation']]
+            external_cites = df[~df['is_self_citation']]
+            
+            print(f"Self-Citations (Jim McKeeth's patents citing his own work): {len(self_cites)} ({len(self_cites)/len(df):.1%})")
+            print(f"External Citations (Other inventors & corporations): {len(external_cites)} ({len(external_cites)/len(df):.1%})")
+        except Exception as e_self:
+            print(f"Could not calculate self-citation rate: {e_self}")
+
+    # 2. Citation Category Breakdown
+    if 'category_name' in df.columns:
+        print("\nCitation Categories:")
+        cat_counts = df['category_name'].value_counts()
+        for cat, count in cat_counts.items():
+            print(f"  - {cat}: {count} ({count/len(df):.1%})")
+
+    # 3. Top Cited Patents in Portfolio
+    if 'cited_patent' in df.columns and 'cited_title' in df.columns:
+        print("\nTop 5 Most Cited Patents in Portfolio:")
+        top_cited = df.groupby(['cited_patent', 'cited_title']).size().reset_index(name='counts')
+        top_cited = top_cited.sort_values(by='counts', ascending=False).head(5)
+        for idx, row in top_cited.iterrows():
+            print(f"  - {row['cited_patent']} ({row['counts']} citations): {row['cited_title']}")
