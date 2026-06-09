@@ -1,6 +1,22 @@
 # Patent Citation Analysis Tool
 
-This project provides a Python-based utility to fetch, de-duplicate, and analyze forward patent citations for patents authored by **James (Jim) McKeeth**. It queries the public Google Cloud BigQuery patent dataset (`patents-public-data.patents.publications`) to find all publications that cite Jim McKeeth's patent portfolio.
+A utility to fetch, de-duplicate, and analyze forward patent citations for my patents. It queries the public [Google Cloud BigQuery](https://cloud.google.com/bigquery) patent dataset (`patents-public-data.patents.publications`) to find all publications that cite **James** or **Jim McKeeth** as inventor.
+
+## 📊 High-Level Metrics
+
+* **Portfolio Size**: 62 patents across **12 distinct invention families**
+* **Citation Rate**: **100% of families** have forward citations
+* **Total Citations**: 1,032 citation links from **823 unique citing patents**
+* **Top Citing Companies**: Micron Technology, Google, IBM, Apple, VirnetX, Microsoft
+* **Top Cited Areas**: Access Control / Device Security (374 citations) and Search Engine Database Optimization (244 citations)
+
+---
+
+## 🔗 Documentation Links
+
+* [**Summary**](SUMMARY.md) of key statistics and notable insights.
+* A convenient browsable **[portal](portal.html)** interface with links to patents.
+* Comprehensive **[Data Review and Analysis.](ANALYSIS.md)**
 
 ---
 
@@ -31,13 +47,15 @@ The project is structured into dedicated folders for scripts and data files:
 
 ## ⚡ Quick Start
 
+If you want to pull the latest or just verify the data.
+
 ### 1. Prerequisites
-Ensure you have a Google Cloud Project with the BigQuery API enabled, and a Service Account JSON key file with permissions (`BigQuery Data Viewer` and `BigQuery Job User`).
+Ensure you have a [Google Cloud Project with the BigQuery API enabled](gcp_setup_guide.md), and a Service Account JSON key file with permissions (`BigQuery Data Viewer` and `BigQuery Job User`).
 
 ### 2. Install Dependencies
 Run the minimal installation command:
 ```bash
-python3 -m pip install -r scripts/requirements.txt
+python -m pip install -r scripts/requirements.txt
 ```
 
 ### 3. Configure Credentials
@@ -71,18 +89,4 @@ This will compile all your patent and citation datasets into a single self-conta
 * Searchable and filterable citation relationships and company-specific breakdowns.
 
 
----
 
-## 📊 High-Level Metrics
-
-* **Portfolio Size**: 62 patents across **12 distinct invention families**
-* **Citation Rate**: **100% of families** have forward citations
-* **Total Citations**: 1,032 citation links from **823 unique citing patents**
-* **Top Citing Companies**: Micron Technology, Google, IBM, Apple, VirnetX, Microsoft
-* **Top Cited Areas**: Access Control / Device Security (374 citations) and Search Engine Database Optimization (244 citations)
-
----
-
-## 🔗 Documentation Links
-* **Data Review & Anomalies**: [ANALYSIS.md](file:///C:/Users/jim/documents/Git/patents/ANALYSIS.md)
-* **Executive Performance Summary**: [SUMMARY.md](file:///C:/Users/jim/documents/Git/patents/SUMMARY.md)

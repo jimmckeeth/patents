@@ -13,9 +13,9 @@ Here is a summary of the structure and dimensions of the three CSV files:
 
 | File Name | Row Count | Unique Entities | Columns | Key Purpose |
 | :--- | :--- | :--- | :--- | :--- |
-| **[my-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/my-patents.csv)** | 62 | 62 patents, 12 families | `Document ID`, `Date Published`, `Family ID`, `Pages`, `Title`, `CPCI` | Records the primary patents authored by James (Jim) McKeeth. |
-| **[citing-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/citing-patents.csv)** | 823 | 823 citing patents | `citing_patent`, `citing_title`, `citing_assignee`, `citing_url` | Summarizes unique patents that cite James McKeeth's work. |
-| **[forward_citations.csv](file:///C:/Users/jim/documents/Git/patents/data/forward_citations.csv)** | 1032 | 823 citing, 52 cited | `citing_patent`, `citing_family_id`, `citing_title`, `citing_assignee`, `citing_url`, `cited_patent`, `cited_family_id`, `cited_title`, `cited_assignee`, `cited_url`, `category_code`, `category_name` | Maps individual citation relationships between citing and cited patents, including the source categories. |
+| **[my-patents.csv](data/my-patents.csv)** | 62 | 62 patents, 12 families | `Document ID`, `Date Published`, `Family ID`, `Pages`, `Title`, `CPCI` | Records the primary patents authored by James (Jim) McKeeth. |
+| **[citing-patents.csv](data/citing-patents.csv)** | 823 | 823 citing patents | `citing_patent`, `citing_title`, `citing_assignee`, `citing_url` | Summarizes unique patents that cite James McKeeth's work. |
+| **[forward_citations.csv](data/forward_citations.csv)** | 1032 | 823 citing, 52 cited | `citing_patent`, `citing_family_id`, `citing_title`, `citing_assignee`, `citing_url`, `cited_patent`, `cited_family_id`, `cited_title`, `cited_assignee`, `cited_url`, `category_code`, `category_name` | Maps individual citation relationships between citing and cited patents, including the source categories. |
 
 ---
 

@@ -76,6 +76,6 @@ The following individual patents from the portfolio have received the highest nu
 ---
 
 ## 🔗 Reference Files
-* **[my-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/my-patents.csv)**: Full list of 62 portfolio patents.
-* **[citing-patents.csv](file:///C:/Users/jim/documents/Git/patents/data/citing-patents.csv)**: deduplicated list of 821 citing patents.
-* **[forward_citations.csv](file:///C:/Users/jim/documents/Git/patents/data/forward_citations.csv)**: Detailed citation-by-citation mappings.
+* **[my-patents.csv](data/my-patents.csv)**: Full list of 62 portfolio patents.
+* **[citing-patents.csv](data/citing-patents.csv)**: deduplicated list of 823 citing patents.
+* **[forward_citations.csv](data/forward_citations.csv)**: Detailed citation-by-citation mappings.
