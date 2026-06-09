@@ -16,13 +16,17 @@ If you want to use this to analyize patents by other inventors you are free to d
 
 ## 🔗 Documentation Links
 
-* [**Summary**](SUMMARY.md) of key statistics and notable insights.
+* **[Summary](SUMMARY.md)** of key statistics and notable insights.
 * A convenient browsable **[portal](portal.html)** interface with links to patents.
-* Comprehensive **[Data Review and Analysis](ANALYSIS.md)**.
+* Comprehensive **[Data Review and Analysis.](ANALYSIS.md)**
+* Curated **[Notable Citing Patents & Technologies](notable.md)** from Apple, Google, Microsoft, Amazon, etc.
 * Patent list data:
-  * **[My Patents Portfolio](data/my_patents.md)** [[CSV](data/my_patents.csv)]
-  * **[Citing Patents](data/citing_patents.md)** [[CSV](data/citing_patents.csv)]
-  * **[Forward Citations Mapping](data/forward_citations.md)** [[CSV](data/forward_citations.csv)]
+
+    * **[My Patents Portfolio](data/my_patents.md)** [[CSV](data/my_patents.csv)]
+
+    * **[Citing Patents](data/citing_patents.md)** [[CSV](data/citing_patents.csv)]
+
+    * **[Forward Citations Mapping](data/forward_citations.md)** [[CSV](data/forward_citations.csv)]
 
 
 ---
@@ -49,6 +53,7 @@ The project is structured into dedicated folders for scripts and data files:
 │   └── requirements.txt         # Full Python dependencies dump
 ├── README.md                    # Core project index & quick start (this file)
 ├── portal.html                  # Interactive, self-contained HTML dashboard portal
+├── notable.md                   # Curated list of notable citing patents and technologies
 ├── AGENTS.md                    # Detailed developer configurations & setup
 ├── ANALYSIS.md                  # Comprehensive CSV data review & integrity report
 └── SUMMARY.md                   # Executive portfolio citation statistics
