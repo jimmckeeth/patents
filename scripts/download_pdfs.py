@@ -90,7 +90,8 @@ def main():
     parser = argparse.ArgumentParser(description="Download patent PDFs into the my-patents/ or citing-patents/ folder.")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--portfolio", action="store_true", help="Download PDFs of the inventor's portfolio patents (default)")
-    group.add_argument("--citing", action="store_true", help="Download PDFs of the citing patents (warning: 800+ files, ~1GB data)")
+    group.add_argument("--citing", action="store_true", help="Download PDFs of all citing patents (warning: 800+ files, ~1GB data)")
+    group.add_argument("--notable", "-notable", action="store_true", help="Download PDFs of only the high-profile citing patents listed in NOTABLE.md")
     args = parser.parse_args()
 
     # Paths relative to this script
@@ -98,28 +99,53 @@ def main():
     project_root = os.path.dirname(script_dir)
     data_dir = os.path.join(project_root, "data")
     
-    if args.citing:
+    if args.notable:
+        # Notable mode
+        docs_dir = os.path.join(project_root, "citing-patents")
+        notable_md_path = os.path.join(project_root, "notable.md")
+        mode_desc = "Notable Citing Patents"
+        
+        if not os.path.exists(notable_md_path):
+            print(f"Error: {notable_md_path} does not exist.")
+            return
+            
+        print(f"Reading notable citing patents from {notable_md_path}...")
+        patent_ids = []
+        with open(notable_md_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if "Citing Patent:" in line:
+                    match = re.search(r'patents\.google\.com/patent/([A-Z0-9\-]+)', line)
+                    if match:
+                        patent_ids.append(match.group(1))
+    elif args.citing:
         # Citing mode
         docs_dir = os.path.join(project_root, "citing-patents")
         csv_file = os.path.join(data_dir, "citing-patents.csv")
         id_column = "citing_patent"
         mode_desc = "Citing Patents"
+        
+        if not os.path.exists(csv_file):
+            print(f"Error: Required file {csv_file} does not exist. Run get_citations.py first.")
+            return
+            
+        df = pd.read_csv(csv_file)
+        patent_ids = df[id_column].dropna().unique().tolist()
     else:
-        # Portfolio mode (default if --citing is not passed)
+        # Portfolio mode (default if neither --citing nor --notable is passed)
         docs_dir = os.path.join(project_root, "my-patents")
         csv_file = os.path.join(data_dir, "my-patents.csv")
         id_column = "Document ID"
         mode_desc = "Portfolio Patents"
+        
+        if not os.path.exists(csv_file):
+            print(f"Error: Required file {csv_file} does not exist. Run get_citations.py first.")
+            return
+            
+        df = pd.read_csv(csv_file)
+        patent_ids = df[id_column].dropna().unique().tolist()
 
     # Create target folder if it doesn't exist
     os.makedirs(docs_dir, exist_ok=True)
-
-    if not os.path.exists(csv_file):
-        print(f"Error: Required file {csv_file} does not exist. Run get_citations.py first.")
-        return
-
-    df = pd.read_csv(csv_file)
-    patent_ids = df[id_column].dropna().unique().tolist()
     
     print(f"=== Starting Download of {len(patent_ids)} {mode_desc} ===")
     print(f"Destination folder: {docs_dir}\n")

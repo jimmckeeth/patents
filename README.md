@@ -2,7 +2,7 @@
 
 I created this utility to fetch, de-duplicate, and analyze forward patent citations for my patents. It queries the public [Google Cloud BigQuery](https://cloud.google.com/bigquery) patent dataset (`patents-public-data.patents.publications`) to find all publications that cite **James** or **Jim McKeeth** as inventor.
 
-If you want to use this to analyize patents by other inventors you are free to do so under the [GNU Affero General Public License](license.md).
+If you want to use this to analyze patents by other inventors you are free to do so under the [GNU Affero General Public License](license.md).
 
 ## 📊 High-Level Metrics
 
