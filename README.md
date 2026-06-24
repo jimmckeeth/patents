@@ -11,6 +11,8 @@ If you want to use this to analyze patents by other inventors you are free to do
 * **Total Citations**: 1,032 citation links from **823 unique citing patents**
 * **Top Citing Companies**: Micron Technology, Google, IBM, Apple, VirnetX, Microsoft
 * **Top Cited Areas**: Access Control / Device Security (374 citations) and Search Engine Database Optimization (244 citations)
+* **First Patent**: [US-6157392-A](https://patents.google.com/patent/US6157392A) — *Animation packager for an on-line book* (published December 5, 2000)
+* **Latest Patent**: [US-11113127-B2](https://patents.google.com/patent/US11113127B2) — *Command line output redirection* (published September 7, 2021)
 
 ---
 
